@@ -42,7 +42,7 @@
             this.btncompany.TabIndex = 0;
             this.btncompany.Text = "取回公司名稱";
             this.btncompany.UseVisualStyleBackColor = true;
-            this.btncompany.Click += new System.EventHandler(this.btncompany_Click);
+            this.btncompany.Click += new System.EventHandler(this.Btncompany_Click);
             // 
             // btnAddress
             // 
@@ -52,7 +52,7 @@
             this.btnAddress.TabIndex = 1;
             this.btnAddress.Text = "取回公司地址";
             this.btnAddress.UseVisualStyleBackColor = true;
-            this.btnAddress.Click += new System.EventHandler(this.btncompany_Click);
+            this.btnAddress.Click += new System.EventHandler(this.Btncompany_Click);
             // 
             // btnEmployee
             // 
@@ -62,7 +62,7 @@
             this.btnEmployee.TabIndex = 2;
             this.btnEmployee.Text = "取回員工";
             this.btnEmployee.UseVisualStyleBackColor = true;
-            this.btnEmployee.Click += new System.EventHandler(this.btncompany_Click);
+            this.btnEmployee.Click += new System.EventHandler(this.Btncompany_Click);
             // 
             // text1
             // 

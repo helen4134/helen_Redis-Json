@@ -14,7 +14,12 @@ namespace Redis_Json.Tests
     public class Form1Tests
     {
         public static ConnectionMultiplexer _redis;
-        //[SetUp]
+        //[SetUp()]
+        public void Setup()
+        {
+            Form1 target = new Form1();
+        }
+
         public void ConnectRedis()
         {
             try
@@ -29,7 +34,7 @@ namespace Redis_Json.Tests
             }
         }
 
-        public class companytest
+        public class Companytest
         {
             public string Name { get; set; }
             public string Address { get; set; }
@@ -39,21 +44,12 @@ namespace Redis_Json.Tests
         [TestMethod()]
         public void TransToJsonTest()
         {
-            //驗證有無成功轉換成json ??
-            Form1 c = new Form1();
-            companytest companylist = new companytest
-            {
-                Name = "美佳",
-                Address = "台中市台灣大道上",
-                Employee = new List<string>
-                {
-                    "hugo",
-                    "fish",
-                    "helen"
-                }
-            };
-            //var companyJson = c.TransToJson(companylist);
-            //Assert.IsTrue(companyJson != null);
+            //驗證有無成功轉換成json 
+            Object companylist = "美佳";
+            JsonClass JsonClass = new JsonClass();
+            
+            string json = JsonClass.TransToJson(companylist);
+            Assert.IsTrue(json != null);
         }
 
         [TestMethod()]
@@ -68,35 +64,14 @@ namespace Redis_Json.Tests
         }
 
         [TestMethod()]
-        public void btncompany_ClickTest()
+        public void Btncompany_ClickTest()
         {
-            //驗證有無成功將值取出    ??
-            //驗證有無成功將json 反序列化回class 並且值是正確的
-            //ConnectRedis();
-            //var db = _redis.GetDatabase();
-            //string s = (string)db.StringGet("company");
-
-            // Form1 target = new Form1();
-            //Assert.IsTrue(s == s1);
+            CompanyData Company = new CompanyData();
+            string value = Company.GetJsonData("Name");
+            Assert.IsTrue(value != null);
+            Assert.IsTrue(value == "美佳");
         }
 
-        [TestMethod()]
-        public void JsonToclassTest()
-        {
-            //驗證有無成功將json 反序列化回class 並且值是正確的
-            ConnectRedis();
-            var db = _redis.GetDatabase();
-            string s = (string)db.StringGet("company");
 
-            Form1 c = new Form1();
-            var companylist = c.JsonToclass(s);
-            
-            Assert.IsTrue((string)companylist.Name == "美佳");
-            Assert.IsTrue((string)companylist.Address == "台中市台灣大道上");
-            Assert.IsTrue((string)companylist.Employee[0] == "hugo");
-            Assert.IsTrue((string)companylist.Employee[1] == "fish");
-            Assert.IsTrue((string)companylist.Employee[2] == "helen");
-        }
-    
     }
 }
